@@ -23,7 +23,7 @@ public class DialView extends View {
     private final StringBuffer mTempLabel = new StringBuffer(8);
     private final float[] mTempResult = new float[2];
 
-    private void init() {
+    private void init(Context context, AttributeSet attrs) {
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(Color.BLACK);
         mTextPaint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -39,7 +39,6 @@ public class DialView extends View {
 
         // Get the custom attributes (fanOnColor and fanOffColor) if available.
 
-        int[] attrs = R.styleable.DialView;
         if ( attrs != null){
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs,
                     R.styleable.DialView,
@@ -60,9 +59,9 @@ public class DialView extends View {
                 mActiveSelection = (mActiveSelection + 1) % SELECTION_COUNT;
                 // Set dial background color to green if selection is >= 1.
                 if (mActiveSelection >= 1) {
-                    mDialPaint.setColor(Color.GREEN);
+                    mDialPaint.setColor(mFanOnColor);
                 } else {
-                    mDialPaint.setColor(Color.GRAY);
+                    mDialPaint.setColor(mFanOffColor);
                 }
                 // Redraw the view.
                 invalidate();
@@ -74,17 +73,17 @@ public class DialView extends View {
 
     public DialView(Context context) {
         super(context);
-        init();
+        init(context, null);
     }
 
     public DialView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context, attrs);
     }
 
     public DialView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs);
     }
 
     @Override
