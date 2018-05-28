@@ -1,6 +1,7 @@
 package com.example.android.customfancontroller;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,6 +17,8 @@ public class DialView extends View {
     private Paint mDialPaint;               // For dial circle in the view.
     private float mRadius;                  // Radius of the circle.
     private int mActiveSelection;           // The active selection.
+    private int mFanOnColor;
+    private int mFanOffColor;
     // String buffer for dial labels and float for ComputeXY result.
     private final StringBuffer mTempLabel = new StringBuffer(8);
     private final float[] mTempResult = new float[2];
@@ -28,9 +31,45 @@ public class DialView extends View {
         mTextPaint.setTextSize(40f);
         mDialPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mDialPaint.setColor(Color.GRAY);
+        // Set default fan on and fan off colors
+        mFanOnColor = Color.CYAN;
+        mFanOffColor = Color.GRAY;
         // Initialize current selection.
         mActiveSelection = 0;
+
+        // Get the custom attributes (fanOnColor and fanOffColor) if available.
+
+        int[] attrs = R.styleable.DialView;
+        if ( attrs != null){
+            TypedArray typedArray = getContext().obtainStyledAttributes(attrs,
+                    R.styleable.DialView,
+                    0, 0);
+            // Set the fan on and fan off colors from the attribute values.
+            mFanOnColor = typedArray.getColor(R.styleable.DialView_fanOnColor,
+                    mFanOnColor);
+            mFanOffColor = typedArray.getColor(R.styleable.DialView_fanOffColor,
+                    mFanOffColor);
+            typedArray.recycle();
+        }
+
         // TODO: Set up onClick listener for this view.
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Rotate selection to the next valid choice.
+                mActiveSelection = (mActiveSelection + 1) % SELECTION_COUNT;
+                // Set dial background color to green if selection is >= 1.
+                if (mActiveSelection >= 1) {
+                    mDialPaint.setColor(Color.GREEN);
+                } else {
+                    mDialPaint.setColor(Color.GRAY);
+                }
+                // Redraw the view.
+                invalidate();
+            }
+        });
+
+        mDialPaint.setColor(mFanOffColor);
     }
 
     public DialView(Context context) {
