@@ -9,4 +9,13 @@
     <color name="cyan1">#22FFFF</color>
     <color name="gray1">#8888AA</color>
     <color name="yellow1">#ffff22</color>
+
+    <color name="body">#A6688F</color>
+    <color name="mind">#A977BA</color>
+    <color name="career">#A6D6E3</color>
+    <color name="money">#5DB5DE</color>
+    <color name="community">#FFDD51</color>
+    <color name="fun">#FFA451</color>
+    <color name="home">#FF5651</color>
+    <color name="love">#F06B88</color>
 </resources>
