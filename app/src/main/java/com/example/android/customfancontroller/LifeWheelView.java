@@ -22,6 +22,16 @@ public class LifeWheelView extends View {
 
     //float radiusStep = mRadius/5;
 
+
+    private float[] computeXYForPosition(final int pos, final float radius) {
+        float[] result = new float[2];
+        Double startAngle = Math.PI * 0;   // Angles are in radians.
+        Double angle = startAngle + (pos * (Math.PI / 4));
+        result[0] = (float) (radius * Math.cos(angle)) + (mWidth / 2);
+        result[1] = (float) (radius * Math.sin(angle)) + (mHeight / 2);
+        return result;
+    }
+
     private void init() {
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(Color.BLACK);
@@ -35,7 +45,7 @@ public class LifeWheelView extends View {
         mCutLinesPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCutLinesPaint.setColor(Color.WHITE);
         mCutLinesPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mCutLinesPaint.setStrokeWidth(4.5f);
+        mCutLinesPaint.setStrokeWidth(10f);
 
         paints[0] = new Paint(Paint.ANTI_ALIAS_FLAG);
         paints[0].setColor(getResources().getColor(R.color.body));
@@ -107,21 +117,23 @@ public class LifeWheelView extends View {
             canvas.drawCircle(mWidth / 2, mHeight / 2, i, paints[paintvar++]);
         }
         */
+        float centerX = mWidth/2;
+        float centerY = mHeight/2;
         for( int i=0; i < 8; i++) {
             for( int j=0; j<10; j++ ) {
                 if( j%2 == 1)
-                    canvas.drawArc(rects[j], (float) 45 * i, 45-2, true, mCutLinesPaint);
+                    canvas.drawArc(rects[j], (float) 45 * i, 45, true, mCutLinesPaint);
                 else
-                    canvas.drawArc(rects[j], (float) 45 * i, 45-2, true, paints[i]);
+                    canvas.drawArc(rects[j], (float) 45 * i, 45, true, paints[i]);
             }
         }
-        canvas.drawLine(mWidth/2,0f,mWidth/2, mHeight, mCutLinesPaint); // vertical bisector
-        canvas.drawLine(0f,mHeight/2,mWidth, mHeight/2, mCutLinesPaint);// horizontal bisector
 
+        for( int i=0; i<8; i++) {
+            float[] xyData = computeXYForPosition(i, mRadius);
+            float x = xyData[0];
+            float y = xyData[1];
+            canvas.drawLine(centerX, centerY, x, y, mCutLinesPaint);
+        }
 
-        canvas.drawLine(mWidth/2,mHeight/2,mWidth/2 - mRadius, mHeight/2 - mRadius, mCutLinesPaint);               // right diagonal
-        canvas.drawLine(mWidth/2,mHeight/2,mWidth/2 + mRadius, mHeight/2 + mRadius, mCutLinesPaint);
-        canvas.drawLine(mWidth/2,mHeight/2,mWidth/2 + mRadius, mHeight/2 - mRadius, mCutLinesPaint);
-        canvas.drawLine(mWidth/2,mHeight/2,mWidth/2 - mRadius, mHeight/2 + mRadius, mCutLinesPaint);
     }
 }
