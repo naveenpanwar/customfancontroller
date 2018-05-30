@@ -18,7 +18,7 @@ public class LifeWheelView extends View {
     private Paint mDialPaint;
     private float mRadius;
     private Paint paints[] = new Paint[8];
-    private RectF rects[] = new RectF[5];
+    private RectF rects[] = new RectF[10];
 
     //float radiusStep = mRadius/5;
 
@@ -78,14 +78,21 @@ public class LifeWheelView extends View {
         mRadius = (float) (Math.min(mWidth, mHeight) / 2 * 0.8);
         float step = mRadius/5;
         float lRadius = mRadius;
-        for( int i=0; i<=5;i++) {
-            rects[0] = new RectF(
+        for( int i=0; i<10;i++) {
+            rects[i] = new RectF(
                     mWidth / 2 - lRadius,
                     mHeight / 2 - lRadius,
                     mWidth / 2 + lRadius,
                     mHeight / 2 + lRadius
             );
-            lRadius -= step;
+            if( i%2 == 0 ) {
+                lRadius -= (mRadius * 0.15);
+            }
+            else {
+                if ( i == 9 )
+                    continue;
+                lRadius -= (mRadius * 0.02);
+            }
         }
     }
 
@@ -101,8 +108,11 @@ public class LifeWheelView extends View {
         }
         */
         for( int i=0; i < 8; i++) {
-            for( int j=0; j<5; j++ ) {
-                canvas.drawArc(rects[i], (float) 45 * i, 45-2, true, paints[j]);
+            for( int j=0; j<10; j++ ) {
+                if( j%2 == 1)
+                    canvas.drawArc(rects[j], (float) 45 * i, 45-2, true, mCutLinesPaint);
+                else
+                    canvas.drawArc(rects[j], (float) 45 * i, 45-2, true, paints[i]);
             }
         }
         canvas.drawLine(mWidth/2,0f,mWidth/2, mHeight, mCutLinesPaint); // vertical bisector
