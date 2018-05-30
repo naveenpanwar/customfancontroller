@@ -17,8 +17,8 @@ public class LifeWheelView extends View {
     private Paint mCutLinesPaint;
     private Paint mDialPaint;
     private float mRadius;
-    private RectF rect;
     private Paint paints[] = new Paint[8];
+    private RectF rects[] = new RectF[5];
 
     //float radiusStep = mRadius/5;
 
@@ -35,6 +35,7 @@ public class LifeWheelView extends View {
         mCutLinesPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCutLinesPaint.setColor(Color.WHITE);
         mCutLinesPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        mCutLinesPaint.setStrokeWidth(4.5f);
 
         paints[0] = new Paint(Paint.ANTI_ALIAS_FLAG);
         paints[0].setColor(getResources().getColor(R.color.body));
@@ -75,6 +76,17 @@ public class LifeWheelView extends View {
         mWidth = w;
         mHeight = h;
         mRadius = (float) (Math.min(mWidth, mHeight) / 2 * 0.8);
+        float step = mRadius/5;
+        float lRadius = mRadius;
+        for( int i=0; i<=5;i++) {
+            rects[0] = new RectF(
+                    mWidth / 2 - lRadius,
+                    mHeight / 2 - lRadius,
+                    mWidth / 2 + lRadius,
+                    mHeight / 2 + lRadius
+            );
+            lRadius -= step;
+        }
     }
 
     @Override
@@ -88,13 +100,9 @@ public class LifeWheelView extends View {
             canvas.drawCircle(mWidth / 2, mHeight / 2, i, paints[paintvar++]);
         }
         */
-        float step = mRadius/5;
         for( int i=0; i < 8; i++) {
-            float lRadius = mRadius;
             for( int j=0; j<5; j++ ) {
-                rect = new RectF(mWidth / 2 - lRadius, mHeight / 2 - lRadius, mWidth / 2 + lRadius, mHeight / 2 + lRadius);
-                canvas.drawArc(rect, (float) 45 * i, 45, true, paints[j]);
-                lRadius -= step;
+                canvas.drawArc(rects[i], (float) 45 * i, 45-2, true, paints[j]);
             }
         }
         canvas.drawLine(mWidth/2,0f,mWidth/2, mHeight, mCutLinesPaint); // vertical bisector
