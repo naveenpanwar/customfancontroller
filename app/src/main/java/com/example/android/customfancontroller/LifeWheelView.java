@@ -13,9 +13,7 @@ public class LifeWheelView extends View {
     // member variables ( trivial types )
     private float mWidth;
     private float mHeight;
-    private Paint mTextPaint;
     private Paint mCutLinesPaint;
-    private Paint mDialPaint;
     private float mRadius;
     private Paint paints[] = new Paint[8];
     private RectF rects[] = new RectF[10];
@@ -33,15 +31,6 @@ public class LifeWheelView extends View {
     }
 
     private void init() {
-        mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setColor(Color.BLACK);
-        mTextPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mTextPaint.setTextAlign(Paint.Align.CENTER);
-        mTextPaint.setTextSize(40f);
-
-        mDialPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mDialPaint.setColor(Color.BLUE);
-
         mCutLinesPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCutLinesPaint.setColor(Color.WHITE);
         mCutLinesPaint.setStyle(Paint.Style.FILL_AND_STROKE);
