@@ -75,7 +75,6 @@ public class LifeWheelView extends View {
         mWidth = w;
         mHeight = h;
         mRadius = (float) (Math.min(mWidth, mHeight) / 2 * 0.8);
-        float step = mRadius/5;
         float lRadius = mRadius;
         for( int i=0; i<10;i++) {
             rects[i] = new RectF(
@@ -93,6 +92,9 @@ public class LifeWheelView extends View {
                 lRadius -= (mRadius * 0.02);
             }
         }
+    }
+
+    public void setBody(int score) {
     }
 
     @Override
