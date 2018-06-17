@@ -18,4 +18,23 @@
     <color name="fun">#FFA451</color>
     <color name="home">#FF5651</color>
     <color name="love">#F06B88</color>
+
+    <color name="body_light">#DEBFD1</color>
+    <color name="mind_light">#E0C5E3</color>
+    <color name="career_light">#D9EFF3</color>
+    <color name="money_light">#B9E1F1</color>
+    <color name="community_light">#FEF5B9</color>
+    <color name="fun_light">#FFDBB9</color>
+    <color name="home_light">#FFB6B8</color>
+    <color name="love_light">#FFBFCE</color>
+
+    <color name="body_very_light">#ffe9f7</color>
+    <color name="mind_very_light">#F9F5FB</color>
+    <color name="career_very_light">#f4fcfd</color>
+    <color name="money_very_light">#F3FAFD</color>
+    <color name="community_very_light">#FFF3F3</color>
+    <color name="fun_very_light">#FFF9F3</color>
+    <color name="home_very_light">#FFF3F3</color>
+    <color name="love_very_light">#FFF4F7</color>
+
 </resources>

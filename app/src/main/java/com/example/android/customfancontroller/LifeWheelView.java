@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -15,7 +16,9 @@ public class LifeWheelView extends View {
     private float mHeight;
     private Paint mCutLinesPaint;
     private float mRadius;
-    private Paint paints[] = new Paint[8];
+    private Paint paintsDark[] = new Paint[8];
+    private Paint paintsLight[] = new Paint[8];
+    private Paint paintsVeryLight[] = new Paint[8];
     private RectF rects[] = new RectF[10];
 
     //float radiusStep = mRadius/5;
@@ -30,43 +33,78 @@ public class LifeWheelView extends View {
         return result;
     }
 
-    private void init() {
+    private void init(Context context) {
         mCutLinesPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCutLinesPaint.setColor(Color.WHITE);
         mCutLinesPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mCutLinesPaint.setStrokeWidth(10f);
 
-        paints[0] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[0].setColor(getResources().getColor(R.color.body));
-        paints[1] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[1].setColor(getResources().getColor(R.color.mind));
-        paints[2] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[2].setColor(getResources().getColor(R.color.career));
-        paints[3] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[3].setColor(getResources().getColor(R.color.money));
-        paints[4] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[4].setColor(getResources().getColor(R.color.community));
-        paints[5] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[5].setColor(getResources().getColor(R.color.fun));
-        paints[6] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[6].setColor(getResources().getColor(R.color.home));
-        paints[7] = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paints[7].setColor(getResources().getColor(R.color.love));
+        paintsDark[0] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[0].setColor(ContextCompat.getColor(context, R.color.body));
+        paintsDark[1] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[1].setColor(ContextCompat.getColor(context, R.color.mind));
+        paintsDark[2] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[2].setColor(ContextCompat.getColor(context, R.color.career));
+        paintsDark[3] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[3].setColor(ContextCompat.getColor(context, R.color.money));
+        paintsDark[4] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[4].setColor(ContextCompat.getColor(context, R.color.community));
+        paintsDark[5] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[5].setColor(ContextCompat.getColor(context, R.color.fun));
+        paintsDark[6] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[6].setColor(ContextCompat.getColor(context, R.color.home));
+        paintsDark[7] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsDark[7].setColor(ContextCompat.getColor(context, R.color.love));
+
+        paintsLight[0] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[0].setColor(ContextCompat.getColor(context, R.color.body_light));
+        paintsLight[1] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[1].setColor(ContextCompat.getColor(context, R.color.mind_light));
+        paintsLight[2] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[2].setColor(ContextCompat.getColor(context, R.color.career_light));
+        paintsLight[3] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[3].setColor(ContextCompat.getColor(context, R.color.money_light));
+        paintsLight[4] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[4].setColor(ContextCompat.getColor(context, R.color.community_light));
+        paintsLight[5] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[5].setColor(ContextCompat.getColor(context, R.color.fun_light));
+        paintsLight[6] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[6].setColor(ContextCompat.getColor(context, R.color.home_light));
+        paintsLight[7] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsLight[7].setColor(ContextCompat.getColor(context, R.color.love_light));
+
+        paintsVeryLight[0] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[0].setColor(ContextCompat.getColor(context, R.color.body_very_light));
+        paintsVeryLight[1] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[1].setColor(ContextCompat.getColor(context, R.color.mind_very_light));
+        paintsVeryLight[2] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[2].setColor(ContextCompat.getColor(context, R.color.career_very_light));
+        paintsVeryLight[3] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[3].setColor(ContextCompat.getColor(context, R.color.money_very_light));
+        paintsVeryLight[4] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[4].setColor(ContextCompat.getColor(context, R.color.community_very_light));
+        paintsVeryLight[5] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[5].setColor(ContextCompat.getColor(context, R.color.fun_very_light));
+        paintsVeryLight[6] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[6].setColor(ContextCompat.getColor(context, R.color.home_very_light));
+        paintsVeryLight[7] = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintsVeryLight[7].setColor(ContextCompat.getColor(context, R.color.love_very_light));
+
     }
 
     public LifeWheelView(Context context) {
         super(context);
-        init();
+        init(context);
     }
 
     public LifeWheelView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context);
     }
 
     public LifeWheelView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context);
     }
 
     @Override
@@ -115,7 +153,7 @@ public class LifeWheelView extends View {
                 if( j%2 == 1)
                     canvas.drawArc(rects[j], (float) 45 * i, 45, true, mCutLinesPaint);
                 else
-                    canvas.drawArc(rects[j], (float) 45 * i, 45, true, paints[i]);
+                    canvas.drawArc(rects[j], (float) 45 * i, 45, true, paintsVeryLight[i]);
             }
         }
 
