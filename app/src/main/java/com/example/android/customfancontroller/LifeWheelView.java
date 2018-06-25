@@ -21,6 +21,16 @@ public class LifeWheelView extends View {
     private Paint paintsVeryLight[] = new Paint[8];
     private RectF rects[] = new RectF[10];
 
+    // sections variables
+    private int bodyScore = 0;
+    private int mindScore = 0;
+    private int careerScore = 0;
+    private int moneyScore = 0;
+    private int communityScore = 0;
+    private int funScore = 0;
+    private int homeScore = 0;
+    private int loveScore = 0;
+
     //float radiusStep = mRadius/5;
 
 
@@ -133,6 +143,51 @@ public class LifeWheelView extends View {
     }
 
     public void setBody(int score) {
+        if ( score >= 0 && score <= 5) {
+            bodyScore = score;
+        }
+    }
+
+    public void setMind(int score) {
+        if ( score >= 0 && score <= 5) {
+            mindScore = score;
+        }
+    }
+
+    public void setCareer(int score) {
+        if ( score >= 0 && score <= 5) {
+            careerScore = score;
+        }
+    }
+
+    public void setMoney(int score) {
+        if ( score >= 0 && score <= 5) {
+            moneyScore = score;
+        }
+    }
+
+    public void setCommunity(int score) {
+        if ( score >= 0 && score <= 5) {
+            communityScore = score;
+        }
+    }
+
+    public void setFun(int score) {
+        if ( score >= 0 && score <= 5) {
+            funScore = score;
+        }
+    }
+
+    public void setHome(int score) {
+        if ( score >= 0 && score <= 5) {
+            homeScore = score;
+        }
+    }
+
+    public void setLove(int score) {
+        if ( score >= 0 && score <= 5) {
+            loveScore = score;
+        }
     }
 
     @Override
