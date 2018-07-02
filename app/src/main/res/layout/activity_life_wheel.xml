@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,12 +19,24 @@
         android:layout_height="300dp" />
 
     <TextView
+        android:id="@+id/bodySeekBarProgress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:labelFor="@+id/bodySeekBar"
         android:layout_margin="16dp"
+        android:text="0"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/bodySeekBarLabel" />
+
+    <TextView
+        android:id="@+id/bodySeekBarLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/bodySeekBar"
+        android:layout_margin="16dp"
         android:text="Body"
         android:gravity="center"
+        android:textColor="@color/body"
         app:layout_constraintBottom_toTopOf="@id/bodySeekBar" />
 
     <SeekBar

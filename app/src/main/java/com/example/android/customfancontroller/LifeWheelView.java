@@ -18,8 +18,17 @@ public class LifeWheelView extends View {
     private Paint paints[] = new Paint[8];
     private RectF rects[] = new RectF[10];
 
-    //float radiusStep = mRadius/5;
+    // variables to set status of the respective categories
+    private int mBody = 0;
+    private int mMind = 0;
+    private int mCareer = 0;
+    private int mMoney = 0;
+    private int mCommunity = 0;
+    private int mFun = 0;
+    private int mHome = 0;
+    private int mLove = 0;
 
+    private void changeStatus()
 
     private float[] computeXYForPosition(final int pos, final float radius) {
         float[] result = new float[2];

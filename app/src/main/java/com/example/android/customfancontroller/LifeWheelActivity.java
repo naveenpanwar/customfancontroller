@@ -3,7 +3,7 @@ package com.example.android.customfancontroller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.SeekBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class LifeWheelActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -20,16 +20,20 @@ public class LifeWheelActivity extends AppCompatActivity implements SeekBar.OnSe
 
     @Override
     public void onProgressChanged( SeekBar seekBar, int progress, boolean fromUser) {
-        Toast.makeText(getApplicationContext(),"seekbar progress: "+progress, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onStopTrackingTouch( SeekBar seekBar) {
-        Toast.makeText(getApplicationContext(),"seekbar touch started!", Toast.LENGTH_SHORT).show();
+        LifeWheelView bodyLifeWheelStatus = findViewById(R.id.lifeWheelView);
+        TextView seekBarProgress = findViewById(R.id.bodySeekBarProgress);
+        seekBarProgress.setText("Seek bar progress: "+progress);
     }
 
     @Override
     public void onStartTrackingTouch( SeekBar seekBar ) {
-        Toast.makeText(getApplicationContext(),"seekbar touch stopped!", Toast.LENGTH_SHORT).show();
+        TextView seekBarProgress = findViewById(R.id.bodySeekBarProgress);
+        seekBarProgress.setText("Seek bar touch started");
+    }
+
+    @Override
+    public void onStopTrackingTouch( SeekBar seekBar) {
+        TextView seekBarProgress = findViewById(R.id.bodySeekBarProgress);
+        seekBarProgress.setText("Seek bar touch stopped");
     }
 }
