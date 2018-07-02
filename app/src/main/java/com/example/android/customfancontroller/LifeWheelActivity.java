@@ -20,9 +20,8 @@ public class LifeWheelActivity extends AppCompatActivity implements SeekBar.OnSe
 
     @Override
     public void onProgressChanged( SeekBar seekBar, int progress, boolean fromUser) {
-        LifeWheelView bodyLifeWheelStatus = findViewById(R.id.lifeWheelView);
-        TextView seekBarProgress = findViewById(R.id.bodySeekBarProgress);
-        seekBarProgress.setText("Seek bar progress: "+progress);
+        LifeWheelView lview = findViewById(R.id.lifeWheelView);
+        lview.setBody(progress);
     }
 
     @Override

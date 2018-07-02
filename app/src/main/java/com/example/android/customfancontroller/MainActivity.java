@@ -13,9 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button lifewheelButton = (Button) findViewById(R.id.lifeWheelViewButton);
+        Button lifeWheelButton = (Button) findViewById(R.id.lifeWheelViewButton);
 
-        lifewheelButton.setOnClickListener(new View.OnClickListener() {
+        lifeWheelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent lifeWheelIntent = new Intent(MainActivity.this, LifeWheelActivity.class);
